@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_PERSONAS 100
+#define MAX_NOMBRE 50
+
+// Estructura para representar una persona
+struct Persona {
+    char nombre[MAX_NOMBRE];
+};
+
+// Función para intercambiar dos personas
+void swap(struct Persona *a, struct Persona *b) {
+    struct Persona temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Función para ordenar las personas por nombre
+void ordenarPorNombre(struct Persona personas[], int n) {
+    int i, j;
+    for (i = 0; i < n-1; i++) {
+        for (j = 0; j < n-i-1; j++) {
+            if (strcmp(personas[j].nombre, personas[j+1].nombre) > 0) {
+                swap(&personas[j], &personas[j+1]);
+            }
+        }
+    }
+}
+
+int main() {
+    struct Persona personas[MAX_PERSONAS];
+    int numPersonas, i;
+
+    printf("Ingrese el número de personas en la fiesta: ");
+    scanf("%d", &numPersonas);
+
+    if (numPersonas < 1 || numPersonas > MAX_PERSONAS) {
+        printf("Número de personas inválido.\n");
+        return 1;
+    }
+
+    // Solicitar nombres de las personas
+    for (i = 0; i < numPersonas; i++) {
+        printf("Ingrese el nombre de la persona %d: ", i+1);
+        scanf("%s", personas[i].nombre);
+    }
+
+    // Ordenar personas por nombre
+    ordenarPorNombre(personas, numPersonas);
+
+    // Imprimir lista ordenada
+    printf("\nLista de personas ordenadas por nombre:\n");
+    for (i = 0; i < numPersonas; i++) {
+        printf("%s\n", personas[i].nombre);
+    }
+
+    return 0;
+}
