@@ -1,0 +1,16 @@
+#include <iostream>
+#include <stdio.h>
+
+int main() {
+  int num1;
+  int num2;
+  printf("\nHola mundo desde C++");
+  printf("\nDime un numero : ");
+  scanf(" %d", &num1);
+  std::cout << "\nHola mundo desde C";
+  std::cout <<"\nDime otro numero: ";
+  std::cin >>num2;
+  printf("\nHe leido num1= %d",num1);
+  std::cout<<"He leido"<<num2;
+  return 0;
+}
