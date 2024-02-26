@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+#define MAX_FILAS 10
+#define MAX_COLUMNAS 10
+
+
+void multiplicarMatrices(int matriz1[MAX_FILAS][MAX_COLUMNAS], int matriz2[MAX_FILAS][MAX_COLUMNAS], int resultado[MAX_FILAS][MAX_COLUMNAS], int filas1, int columnas1, int filas2, int columnas2) {
+    int i, j, k;
+    for (i = 0; i < filas1; i++) {
+        for (j = 0; j < columnas2; j++) {
+            resultado[i][j] = 0;
+            for (k = 0; k < columnas1; k++) {
+                resultado[i][j] += matriz1[i][k] * matriz2[k][j];
+            }
+        }
+    }
+}
+
+
+void imprimirMatriz(int matriz[MAX_FILAS][MAX_COLUMNAS], int filas, int columnas) {
+    int i, j;
+    for (i = 0; i < filas; i++) {
+        for (j = 0; j < columnas; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matriz1[MAX_FILAS][MAX_COLUMNAS], matriz2[MAX_FILAS][MAX_COLUMNAS], resultado[MAX_FILAS][MAX_COLUMNAS];
+    int filas1, columnas1, filas2, columnas2;
+    int i, j;
+
+    
+    printf("Ingrese el número de filas de la primera matriz: ");
+    scanf("%d", &filas1);
+    printf("Ingrese el número de columnas de la primera matriz: ");
+    scanf("%d", &columnas1);
+
+    
+    printf("Ingrese el número de filas de la segunda matriz: ");
+    scanf("%d", &filas2);
+    printf("Ingrese el número de columnas de la segunda matriz: ");
+    scanf("%d", &columnas2);
+
+   
+    if (columnas1 != filas2) {
+        printf("Error: No se pueden multiplicar las matrices. El número de columnas de la primera matriz debe ser igual al número de filas de la segunda matriz.\n");
+        return 1;
+    }
+
+    
+    printf("Ingrese los elementos de la primera matriz:\n");
+    for (i = 0; i < filas1; i++) {
+        for (j = 0; j < columnas1; j++) {
+            printf("Ingrese el elemento (%d, %d): ", i + 1, j + 1);
+            scanf("%d", &matriz1[i][j]);
+        }
+    }
+
+    
+    printf("Ingrese los elementos de la segunda matriz:\n");
+    for (i = 0; i < filas2; i++) {
+        for (j = 0; j < columnas2; j++) {
+            printf("Ingrese el elemento (%d, %d): ", i + 1, j + 1);
+            scanf("%d", &matriz2[i][j]);
+        }
+    }
+
+    
+    multiplicarMatrices(matriz1, matriz2, resultado, filas1, columnas1, filas2, columnas2);
+
+    
+    printf("\nPrimera matriz:\n");
+    imprimirMatriz(matriz1, filas1, columnas1);
+
+    printf("\nSegunda matriz:\n");
+    imprimirMatriz(matriz2, filas2, columnas2);
+
+    printf("\nResultado de la multiplicación:\n");
+    imprimirMatriz(resultado, filas1, columnas2);
+
+    return 0;
+}
