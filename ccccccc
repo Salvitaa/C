@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define NPALABRAS 10
+
+//Escribe un programa que reciba 10 palabras
+//Las guarde en una lista de punteros, haciendo reserva dinámica
+//de memoria con malloc y las ordene por su longitud de menor a mayor
+
+int main(void) {
+  //Defino el vector de punteros
+
+  //Defino el resto de las variables
+
+
+  //Leo las palabras
+
+
+  //Muestro la lista tal cual
+
+
+  //Ordeno la lista por su longitud
+
+
+  //Vuelvo a mostrar la lista
+
+
+
+ 
+ 
+  return 0;
+}
