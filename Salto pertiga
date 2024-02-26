@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_PERSONAS 50
+#define MAX_NOMBRE 50
+
+// Definir una estructura para representar a una persona y su salto en pertiga
+struct Persona {
+    char nombre[MAX_NOMBRE];
+    double alturaSalto;
+};
+
+int main() {
+    int numPersonas, i;
+    double maxSalto = 0;
+    int indiceMaxSalto = -1;
+
+    // Solicitar al usuario el número de personas en la competencia
+    printf("Ingrese el número de personas en la competencia de salto en pertiga: ");
+    scanf("%d", &numPersonas);
+
+    if (numPersonas < 1 || numPersonas > MAX_PERSONAS) {
+        printf("Número de personas inválido.\n");
+        return 1;
+    }
+
+    // Declarar un array de estructuras Persona para almacenar los datos de cada persona
+    struct Persona personas[MAX_PERSONAS];
+
+    // Solicitar al usuario que ingrese el nombre y la altura del salto de cada persona
+    for (i = 0; i < numPersonas; i++) {
+        printf("Ingrese el nombre de la persona %d: ", i + 1);
+        scanf("%s", personas[i].nombre);
+        printf("Ingrese la altura del salto de %s: ", personas[i].nombre);
+        scanf("%lf", &personas[i].alturaSalto);
+
+        // Verificar si este salto es el más alto hasta ahora
+        if (personas[i].alturaSalto > maxSalto) {
+            maxSalto = personas[i].alturaSalto;
+            indiceMaxSalto = i;
+        }
+    }
+
+    // Mostrar al ganador (la persona con el salto más alto)
+    if (indiceMaxSalto != -1) {
+        printf("El ganador es %s con un salto de %.2lf metros.\n", personas[indiceMaxSalto].nombre, personas[indiceMaxSalto].alturaSalto);
+    } else {
+        printf("No se registraron saltos.\n");
+    }
+
+    return 0;
+}
